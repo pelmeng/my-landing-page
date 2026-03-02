@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartHydro Bottle - Умная бутылка для воды</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .nav-links a {
+            margin-left: 30px;
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #667eea;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 150px 0 100px;
+            text-align: center;
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
+            background: #ff6b6b;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+        }
+
+        .cta-button:hover {
+            background: #ff5252;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.6);
+        }
+
+        /* Features */
+        .features {
+            background: white;
+            padding: 100px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 60px;
+            color: #333;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .feature-card {
+            text-align: center;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: #667eea;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        /* How it works */
+        .how-it-works {
+            padding: 100px 0;
+            background: #f8f9fa;
+        }
+
+        .steps {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .step {
+            text-align: center;
+            padding: 20px;
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background: #667eea;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin: 0 auto 20px;
+        }
+
+        /* Reviews */
+        .reviews {
+            background: white;
+            padding: 100px 0;
+        }
+
+        .review-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .review-card {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .review-text {
+            font-style: italic;
+            margin-bottom: 20px;
+            color: #666;
+        }
+
+        .review-author {
+            font-weight: bold;
+            color: #333;
+        }
+
+        /* Pricing */
+        .pricing {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .pricing-content {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .old-price {
+            text-decoration: line-through;
+            opacity: 0.7;
+            font-size: 1.2rem;
+        }
+
+        .new-price {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #ffeb3b;
+            margin: 20px 0;
+        }
+
+        /* FAQ */
+        .faq {
+            background: white;
+            padding: 100px 0;
+        }
+
+        .faq-item {
+            margin-bottom: 30px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .faq-question {
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: #667eea;
+        }
+
+        /* Footer */
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 50px 0;
+        }
+
+        .social-links {
+            margin: 20px 0;
+        }
+
+        .social-links a {
+            color: white;
+            margin: 0 15px;
+            font-size: 1.5rem;
+            text-decoration: none;
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .nav-links a {
+                margin: 0 10px;
+                font-size: 0.9rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">SmartHydro</div>
+            <nav class="nav-links">
+                <a href="#features">Преимущества</a>
+                <a href="#how-it-works">Как работает</a>
+                <a href="#reviews">Отзывы</a>
+                <a href="#pricing">Цены</a>
+                <a href="#faq">Вопросы</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>SmartHydro Bottle</h1>
+            <p>Умная бутылка для воды, которая следит за вашим водным балансом и напоминает пить воду</p>
+            <a href="#pricing" class="cta-button">Заказать со скидкой 25%</a>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section id="features" class="features">
+        <div class="container">
+            <h2 class="section-title">Почему выбирают SmartHydro?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Отслеживание воды</h3>
+                    <p>Автоматически отслеживает объем выпитой воды в реальном времени</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔔</div>
+                    <h3>Уведомления</h3>
+                    <p>Напоминает о необходимости пить воду через мобильное приложение</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🌱</div>
+                    <h3>Эко-материалы</h3>
+                    <p>Изготовлена из бамбука и нержавеющей стали без вреда для природы</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How it works -->
+    <section id="how-it-works" class="how-it-works">
+        <div class="container">
+            <h2 class="section-title">Как это работает?</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <p>Наливаете воду в бутылку</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <p>Приложение отслеживает объем</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <p>Получаете напоминания</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <p>Следите за прогрессом</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews -->
+    <section id="reviews" class="reviews">
+        <div class="container">
+            <h2 class="section-title">Отзывы пользователей</h2>
+            <div class="review-cards">
+                <div class="review-card">
+                    <p class="review-text">"С тех пор как использую SmartHydro, я стал намного бодрее и не забываю пить воду в течение дня!"</p>
+                    <p class="review-author">Алексей, 32 года</p>
+                </div>
+                <div class="review-card">
+                    <p class="review-text">"Отличная идея подарка для заботящегося о здоровье человека!"</p>
+                    <p class="review-author">Мария, 28 лет</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing -->
+    <section id="pricing" class="pricing">
+        <div class="container">
+            <div class="pricing-content">
+                <h2 class="section-title">Акция! Только сегодня</h2>
+                <p class="old-price">Старая цена: 2 990 ₽</p>
+                <p class="new-price">Новая цена: 2 249 ₽</p>
+                <a href="#" class="cta-button">Заказать сейчас</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="faq">
+        <div class="container">
+            <h2 class="section-title">Часто задаваемые вопросы</h2>
+            <div class="faq-item">
+                <p class="faq-question">Сколько времени работает аккумулятор?</p>
+                <p>До 30 дней при обычном использовании.</p>
+            </div>
+            <div class="faq-item">
+                <p class="faq-question">Совместимо ли с Android и iOS?</p>
+                <p>Да, доступно для обеих платформ.</p>
+            </div>
+            <div class="faq-item">
+                <p class="faq-question">Какие материалы используются?</p>
+                <p>Бамбук и пищевая нержавеющая сталь 304.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>© 2024 SmartHydro Bottle. Все права защищены.</p>
+            <div class="social-links">
+                <a href="#">📱 Instagram</a>
+                <a href="#">💬 Telegram</a>
+                <a href="#">👥 VK</a>
+            </div>
+            <p>support@smarthydro.ru | +7 (495) 123-45-67</p>
+        </div>
+    </footer>
+</body>
+</html>
