@@ -35,7 +35,7 @@
 ## 🚀 Быстрый старт
 
 1. **Просмотр онлайн:**
-   Откройте [демо-версию](https://pelmeng.github.io/my-landing-page/)
+   Откройте [демо-версию](https://pelmeng.github.io/my-landing-page/](https://ivanviab.github.io/my-landing-page/)
 
 2. **Локальный запуск:**
    ```bash
